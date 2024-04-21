@@ -113,15 +113,15 @@
         // Function to call showPopup API
         function showPopup() {
             Telegram.WebApp.showPopup({
-                title: 'Title',
-                message: 'Some message',
+                title: 'Demo Game',
+                message: 'Tên 1 con game nào đó chẳng hạn !!!',
                 buttons: [
-                    {id: 'link', type: 'default', text: 'Open ton.org'},
+                    {id: 'link', type: 'default', text: 'Xem ảnh'},
                     {type: 'cancel'},
                 ]
             }, function(btn) {
                 if (btn === 'link') {
-                    Telegram.WebApp.openLink('https://ton.org/');
+                    Telegram.WebApp.openLink('https://vlxx.moe/');
                 }
             });
         };
@@ -135,14 +135,14 @@
             }
         };
 
-       // function setViewportData() {
-       //     var sizeEl = document.getElementById('viewport-params-size');
-       //     sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
-       //         'height: ' + Telegram.WebApp.viewportStableHeight;
-//
-        //    var expandEl = document.querySelector('#viewport-params-expand');
-        //    expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
-        //}
+        function setViewportData() {
+            var sizeEl = document.getElementById('viewport-params-size');
+            sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
+                'height: ' + Telegram.WebApp.viewportStableHeight;
+
+            var expandEl = document.querySelector('#viewport-params-expand');
+            expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
+        }
 
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
 
