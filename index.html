@@ -113,15 +113,15 @@
         // Function to call showPopup API
         function showPopup() {
             Telegram.WebApp.showPopup({
-                title: 'Demo Game',
-                message: 'Tên 1 con game nào đó chẳng hạn !!!',
+                title: 'Title',
+                message: 'Some message',
                 buttons: [
-                    {id: 'link', type: 'default', text: 'Xem ảnh'},
+                    {id: 'link', type: 'default', text: 'Open ton.org'},
                     {type: 'cancel'},
                 ]
             }, function(btn) {
                 if (btn === 'link') {
-                    Telegram.WebApp.openLink('https://vlxx.moe/');
+                    Telegram.WebApp.openLink('https://ton.org/');
                 }
             });
         };
