@@ -65,28 +65,28 @@
 <body>
     <main>
         <div align="center">
-            <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
+            <a href="https://vna1612.online/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
         </div>
-        <h1>Modals</h1>
-        <button onclick="Telegram.WebApp.showAlert('Hello World!');">Launch Alert</button>
-        <button onclick="showPopup();">Launch Popup</button>
+        <h1>WEB APP DEMO VNA1612</h1>
+        <button onclick="Telegram.WebApp.showAlert('Đang phát triển, thích bỏ cái gì vào đây thì bỏ');">Liên Hệ - Hợp Tác</button>
+        <button onclick="showPopup();">Demo Game</button>
 
         <h1>Links</h1>
         <ul>
             <li>
-                <a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/trendingapps');">Open link within Telegram</a>
+                <a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/vna_1612');">Chủ nhân BOT</a>
             </li>
             <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://ton.org/');">Open link in external browser</a>
+                <a href="javascript:Telegram.WebApp.openLink('https://google.com/');">Thích viết gì thì viết</a>
             </li>
             <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://telegra.ph/api',{try_instant_view:true});">Open link inside Telegram webview</a>
+                <a href="javascript:Telegram.WebApp.openLink('https://vlxx.moe/',{try_instant_view:true});">Chưa nghĩ ra gì để viết</a>
             </li>
         </ul>
 
         <h1>Buttons</h1>
-        <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
-        <button onclick="toggleMainButton();">Toggle Main Button</button>
+        <button onclick="Telegram.WebApp.expand();">Mở Rộng</button>
+        <button onclick="toggleMainButton();">Tắt/Bật Main Button</button>
     </main>
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
@@ -106,22 +106,22 @@
             text: 'Main Button'
         });
         Telegram.WebApp.MainButton.onClick(function () {
-            Telegram.WebApp.showAlert('Main Button was clicked')
+            Telegram.WebApp.showAlert('Debug: Ok, click vào đây làm gì thì làm, muốn làm gì thì sửa sau')
         });	
         Telegram.WebApp.MainButton.show();
 
         // Function to call showPopup API
         function showPopup() {
             Telegram.WebApp.showPopup({
-                title: 'Title',
-                message: 'Some message',
+                title: 'Demo Game',
+                message: 'Tên 1 con game nào đó chẳng hạn !!!',
                 buttons: [
-                    {id: 'link', type: 'default', text: 'Open ton.org'},
-                    {type: 'cancel'},
+                    {id: 'link', type: 'default', text: 'Xem ảnh'},
+                    {type: 'Hủy'},
                 ]
             }, function(btn) {
                 if (btn === 'link') {
-                    Telegram.WebApp.openLink('https://ton.org/');
+                    Telegram.WebApp.openLink('https://vlxx.moe/');
                 }
             });
         };
