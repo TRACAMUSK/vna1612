@@ -59,6 +59,9 @@
         <div class="dice" id="dice2"></div>
         <div class="dice" id="dice3"></div>
     </div>
+    <br>
+    <button onclick="showHowToPlay()">How to Play</button>
+    <button onclick="showRoadmap()">Roadmap</button>
 
     <script>
         var balance = 100; // Initial balance
@@ -155,6 +158,14 @@
             } else {
                 alert("Please enter a valid number of tokens!");
             }
+        }
+
+        function showHowToPlay() {
+            alert("How to Play:\n1. Enter the amount you want to bet.\n2. Select a lucky number from 1 to 6.\n3. Click on 'Place Bet' to roll the dice and see if you win!");
+        }
+
+        function showRoadmap() {
+            alert("Roadmap:\n- Add more features to enhance user experience.\n- Improve UI/UX design.\n- Implement multiplayer mode.\n- Add sound effects and animations.");
         }
 
         // Update initial balance
