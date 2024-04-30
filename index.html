@@ -32,6 +32,25 @@
             cursor: pointer;
             margin: 10px;
         }
+        .overlay {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .message-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -64,8 +83,17 @@
     <button onclick="showRoadmap()">Roadmap</button>
     <button onclick="buyTLD()">Buy $TLD</button>
 
+    <!-- Message Box -->
+    <div class="overlay" id="overlay">
+        <div class="message-box">
+            <span id="message"></span>
+            <button onclick="closeMessageBox()">Close</button>
+        </div>
+    </div>
+
     <script>
         var balance = 100; // Initial balance
+        var betAmount = 0; // Store bet amount globally
         var diceValues = []; // Store dice values globally
 
         function updateBalance() {
@@ -82,16 +110,16 @@
         }
 
         function placeBet() {
-            var betAmount = parseInt(document.getElementById("betAmount").value);
+            betAmount = parseInt(document.getElementById("betAmount").value);
             var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
 
             if (isNaN(betAmount) || betAmount <= 0) {
-                alert("Please enter a valid bet amount!");
+                showMessage("Please enter a valid bet amount!");
                 return;
             }
 
             if (betAmount > balance) {
-                alert("Bet amount exceeds current balance!");
+                showMessage("Bet amount exceeds current balance!");
                 return;
             }
 
@@ -124,9 +152,9 @@
 
             // Display the result
             if (winAmount > 0) {
-                alert("You won " + winAmount + " tokens!");
+                showMessage("You won " + winAmount + " tokens!");
             } else {
-                alert("Better luck next time!");
+                showMessage("Better luck next time!");
             }
 
             // Update balance after calculating the result
@@ -144,9 +172,9 @@
             if (!isNaN(amount) && amount > 0) {
                 balance += amount;
                 updateBalance();
-                alert("You have deposited " + amount + " tokens into your account!");
+                showMessage("You have deposited " + amount + " tokens into your account!");
             } else {
-                alert("Please enter a valid number of tokens!");
+                showMessage("Please enter a valid number of tokens!");
             }
         }
 
@@ -155,21 +183,31 @@
             if (!isNaN(amount) && amount > 0 && amount <= balance) {
                 balance -= amount;
                 updateBalance();
-                alert("You have withdrawn " + amount + " tokens from your account!");
+                showMessage("You have withdrawn " + amount + " tokens from your account!");
             } else {
-                alert("Please enter a valid number of tokens!");
+                showMessage("Please enter a valid number of tokens!");
             }
         }
 
         function showHowToPlay() {
-            alert("How to Play:\n1. Enter the amount you want to bet.\n2. Select a lucky number from 1 to 6.\n3. Click on 'Place Bet' to roll the dice and see if you win!");
+            showMessage("How to Play:<br>1. Enter the amount you want to bet.<br>2. Select a lucky number from 1 to 6.<br>3. Click on 'Place Bet' to roll the dice and see if you win!");
         }
 
         function showRoadmap() {
-            alert(`Token Game Roadmap Phase 1(May 2024 - December 2024):\n\n1️⃣May 2024 - July 2024: Foundation and Basic Features\n1. Game Infrastructure Setup\n2. User Authentication and Authorization\n3. Basic Gameplay Mechanics\n4. UI/UX Design\n\n2️⃣August 2024 - October 2024: Enhancements and Expansion\n1. Advanced Betting Options\n2. Social Features\n3. Token Economy Integration\n4. Mobile Optimization\n\n3️⃣November 2024 - December 2024: Refinement and Expansion\n1. Multiplayer Mode\n2. Enhanced Visuals and Sound\n3. Community Engagement\n4. Cross-Platform Compatibility\n\n4️⃣Beyond 2024: Continued Growth and Innovation\n1. Regular Content Updates\n2. Tournaments and Events\n3. Integration with Blockchain\n4. Expansion into New Markets`);
+            showMessage("Token Game Roadmap (May 2024 - December 2024):<br><br>May 2024 - July 2024: Foundation and Basic Features<br>1. Game Infrastructure Setup<br>2. User Authentication and Authorization<br>3. Basic Gameplay Mechanics<br>4. UI/UX Design<br><br>August 2024 - October 2024: Enhancements and Expansion<br>1. Advanced Betting Options<br>2. Social Features<br>3. Token Economy Integration<br>4. Mobile Optimization<br><br>November 2024 - December 2024: Refinement and Expansion<br>1. Multiplayer Mode<br>2. Enhanced Visuals and Sound<br>3. Community Engagement<br>4. Cross-Platform Compatibility<br><br>Beyond 2024: Continued Growth and Innovation<br>1. Regular Content Updates<br>2. Tournaments and Events<br>3. Integration with Blockchain<br>4. Expansion into New Markets");
         }
+
         function buyTLD() {
-            alert("Please wait for the official announcement");
+            showMessage("Please wait for the official announcement");
+        }
+
+        function showMessage(message) {
+            document.getElementById("message").innerHTML = message;
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeMessageBox() {
+            document.getElementById("overlay").style.display = "none";
         }
 
         // Update initial balance
