@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xúc xắc</title>
+    <title>Dice Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,10 +35,10 @@
     </style>
 </head>
 <body>
-    <h1>Xúc xắc</h1>
-    <div class="balance">Số dư: <span id="balance">100</span> token</div>
+    <h1>Dice Game</h1>
+    <div class="balance">Balance: <span id="balance">100</span> token</div>
     <div>
-        <label for="betAmount">Số tiền cược:</label>
+        <label for="betAmount">Bet Amount:</label>
         <input type="number" id="betAmount" min="1" step="1">
         <select id="selectedNumber">
             <option value="1">1</option>
@@ -50,9 +50,9 @@
         </select>
     </div>
     <br>
-    <button onclick="placeBet()">Đặt cược</button>
-    <button onclick="depositTokens()">Nạp token</button>
-    <button onclick="withdrawTokens()">Rút token</button>
+    <button onclick="placeBet()">Place Bet</button>
+    <button onclick="depositTokens()">Deposit Tokens</button>
+    <button onclick="withdrawTokens()">Withdraw Tokens</button>
     <div id="diceContainer">
         <div class="dice" id="dice1"></div>
         <div class="dice" id="dice2"></div>
@@ -90,12 +90,12 @@
             var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
 
             if (isNaN(betAmount) || betAmount <= 0) {
-                alert("Vui lòng nhập số tiền cược hợp lệ!");
+                alert("Please enter a valid bet amount!");
                 return;
             }
 
             if (betAmount > balance) {
-                alert("Số tiền cược vượt quá số dư hiện có!");
+                alert("Bet amount exceeds current balance!");
                 return;
             }
 
@@ -129,32 +129,32 @@
 
                 // Display the result
                 if (winAmount > 0) {
-                    alert("Bạn đã thắng " + winAmount + " token!");
+                    alert("You won " + winAmount + " tokens!");
                 } else {
-                    alert("Chúc bạn may mắn lần sau!");
+                    alert("Better luck next time!");
                 }
             }, 3000); // Wait for the animation to finish
         }
 
         function depositTokens() {
-            var amount = parseInt(prompt("Nhập số token bạn muốn nạp:"));
+            var amount = parseInt(prompt("Enter the number of tokens you want to deposit:"));
             if (!isNaN(amount) && amount > 0) {
                 balance += amount;
                 updateBalance();
-                alert("Bạn đã nạp " + amount + " token vào tài khoản!");
+                alert("You have deposited " + amount + " tokens into your account!");
             } else {
-                alert("Vui lòng nhập số token hợp lệ!");
+                alert("Please enter a valid number of tokens!");
             }
         }
 
         function withdrawTokens() {
-            var amount = parseInt(prompt("Nhập số token bạn muốn rút:"));
+            var amount = parseInt(prompt("Enter the number of tokens you want to withdraw:"));
             if (!isNaN(amount) && amount > 0 && amount <= balance) {
                 balance -= amount;
                 updateBalance();
-                alert("Bạn đã rút " + amount + " token từ tài khoản!");
+                alert("You have withdrawn " + amount + " tokens from your account!");
             } else {
-                alert("Vui lòng nhập số token hợp lệ!");
+                alert("Please enter a valid number of tokens!");
             }
         }
 
