@@ -51,15 +51,6 @@
             padding: 20px;
             border-radius: 10px;
         }
-        .close-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: transparent;
-            border: none;
-            font-size: 14px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -96,7 +87,7 @@
     <div class="overlay" id="overlay">
         <div class="message-box">
             <span id="message"></span>
-            <button class="close-button" onclick="closeMessageBox()">Close</button>
+            <button onclick="closeMessageBox()">Close</button>
         </div>
     </div>
 
