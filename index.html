@@ -43,14 +43,16 @@
             background-color: rgba(0,0,0,0.5);
         }
         .message-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-        }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 300px; /* Kích thước cố định của hộp thông báo */
+    overflow: auto; /* Tạo thanh cuộn khi cần thiết */
+}
     </style>
 </head>
 <body>
