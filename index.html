@@ -104,16 +104,22 @@
             for (var i = 0; i < 3; i++) {
                 var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
                 document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
-                document.getElementById("dice" + (i + 1)).style.transform = "rotateX(360deg)";
+                document.getElementById("dice" + (i + 1)).style.transform = "none"; // Reset transform
             }
-            setTimeout(displayResult, 3000);
+
+            setTimeout(function() {
+                for (var i = 0; i < 3; i++) {
+                    document.getElementById("dice" + (i + 1)).style.transform = "rotateX(360deg)";
+                }
+                setTimeout(displayResult, 3000);
+            }, 100);
         }
 
         function placeBet() {
             var betAmountInput = document.getElementById("betAmount").value;
             var selectedNumber = document.getElementById("selectedNumber").value;
 
-            // Kiểm tra xem số token và số đã được chọn chưa
+            // Check if bet amount and selected number are entered
             if (betAmountInput === "" || selectedNumber === "0") {
                 showMessage("Please enter a valid bet amount and select a lucky number!<br>");
                 return;
