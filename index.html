@@ -101,12 +101,10 @@
         }
 
         function rollDiceAnimation() {
-            diceValues = []; // Reset dice values
             for (var i = 0; i < 3; i++) {
                 var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
                 document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
                 document.getElementById("dice" + (i + 1)).style.transform = "rotateX(360deg)";
-                diceValues.push(value); // Store dice values
             }
             setTimeout(displayResult, 3000);
         }
@@ -133,10 +131,7 @@
                 return;
             }
 
-            // Reset transform of dice before rolling animation
-            document.querySelectorAll(".dice").forEach(die => {
-                die.style.transform = "none";
-            });
+            diceValues = []; // Reset dice values
 
             // Roll the dice with animation
             rollDiceAnimation();
@@ -149,8 +144,10 @@
         function displayResult() {
             var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
             var countSelectedNumber = 0;
-            for (var i = 0; i < diceValues.length; i++) {
-                if (diceValues[i] === selectedNumber) {
+            for (var i = 0; i < 3; i++) {
+                var value = parseInt(document.getElementById("dice" + (i + 1)).innerText);
+                diceValues.push(value); // Store dice values
+                if (value === selectedNumber) {
                     countSelectedNumber++;
                 }
             }
@@ -175,11 +172,6 @@
             // Update balance after calculating the result
             balance += winAmount;
             updateBalance();
-
-            // Reset dice values
-            for (var i = 0; i < 3; i++) {
-                document.getElementById("dice" + (i + 1)).innerText = '';
-            }
         }
 
         function depositTokens() {
