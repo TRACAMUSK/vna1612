@@ -101,43 +101,50 @@
         }
 
         function rollDiceAnimation() {
+            diceValues = []; // Reset dice values
             for (var i = 0; i < 3; i++) {
                 var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
                 document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
                 document.getElementById("dice" + (i + 1)).style.transform = "rotateX(360deg)";
+                diceValues.push(value); // Store dice values
             }
             setTimeout(displayResult, 3000);
         }
 
-function placeBet() {
-    var betAmountInput = document.getElementById("betAmount").value;
-    var selectedNumber = document.getElementById("selectedNumber").value;
+        function placeBet() {
+            var betAmountInput = document.getElementById("betAmount").value;
+            var selectedNumber = document.getElementById("selectedNumber").value;
 
-    // Kiểm tra xem số token và số đã được chọn chưa
-    if (betAmountInput === "" || selectedNumber === "0") {
-        showMessage("Please enter a valid bet amount and select a lucky number!<br>");
-        return;
-    }
+            // Kiểm tra xem số token và số đã được chọn chưa
+            if (betAmountInput === "" || selectedNumber === "0") {
+                showMessage("Please enter a valid bet amount and select a lucky number!<br>");
+                return;
+            }
 
-    betAmount = parseInt(betAmountInput);
+            betAmount = parseInt(betAmountInput);
 
-    if (isNaN(betAmount) || betAmount <= 0) {
-        showMessage("Please enter a valid bet amount!<br>");
-        return;
-    }
+            if (isNaN(betAmount) || betAmount <= 0) {
+                showMessage("Please enter a valid bet amount!<br>");
+                return;
+            }
 
-    if (betAmount > balance) {
-        showMessage("Bet amount exceeds current balance!<br>");
-        return;
-    }
+            if (betAmount > balance) {
+                showMessage("Bet amount exceeds current balance!<br>");
+                return;
+            }
 
-    // Roll the dice with animation
-    rollDiceAnimation();
+            // Reset transform of dice before rolling animation
+            document.querySelectorAll(".dice").forEach(die => {
+                die.style.transform = "none";
+            });
 
-    // Reduce balance after placing the bet
-    balance -= betAmount;
-    updateBalance();
-}
+            // Roll the dice with animation
+            rollDiceAnimation();
+
+            // Reduce balance after placing the bet
+            balance -= betAmount;
+            updateBalance();
+        }
 
         function displayResult() {
             var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
