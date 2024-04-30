@@ -20,6 +20,7 @@
             align-items: center;
             font-size: 36px;
             margin: 20px;
+            transition: transform 3s ease-out;
         }
         button {
             padding: 10px 20px;
@@ -66,12 +67,21 @@
             document.getElementById("balance").innerText = balance;
         }
 
+        function rollDiceAnimation() {
+            for (var i = 0; i < 3; i++) {
+                var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
+                document.getElementById("dice" + (i + 1)).style.transform = "rotateX(360deg)";
+            }
+            setTimeout(rollDice, 3000);
+        }
+
         function rollDice() {
             diceValues = [];
             for (var i = 0; i < 3; i++) {
                 var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
                 diceValues.push(value);
                 document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
+                document.getElementById("dice" + (i + 1)).style.transform = "rotateX(0deg)";
             }
         }
 
@@ -93,35 +103,37 @@
             balance -= betAmount;
             updateBalance();
 
-            // Roll the dice
-            rollDice();
+            // Roll the dice with animation
+            rollDiceAnimation();
 
-            // Check the result
-            var winAmount = 0;
-            var countSelectedNumber = 0;
-            for (var i = 0; i < diceValues.length; i++) {
-                if (diceValues[i] === selectedNumber) {
-                    countSelectedNumber++;
+            // Check the result and update the balance after animation
+            setTimeout(function() {
+                var winAmount = 0;
+                var countSelectedNumber = 0;
+                for (var i = 0; i < diceValues.length; i++) {
+                    if (diceValues[i] === selectedNumber) {
+                        countSelectedNumber++;
+                    }
                 }
-            }
 
-            if (countSelectedNumber === 1) {
-                winAmount = betAmount * 2;
-            } else if (countSelectedNumber === 2) {
-                winAmount = betAmount * 5;
-            } else if (countSelectedNumber === 3) {
-                winAmount = betAmount * 10;
-            }
+                if (countSelectedNumber === 1) {
+                    winAmount = betAmount * 2;
+                } else if (countSelectedNumber === 2) {
+                    winAmount = betAmount * 5;
+                } else if (countSelectedNumber === 3) {
+                    winAmount = betAmount * 10;
+                }
 
-            balance += winAmount;
-            updateBalance();
+                balance += winAmount;
+                updateBalance();
 
-            // Display the result
-            if (winAmount > 0) {
-                alert("Bạn đã thắng " + winAmount + " token!");
-            } else {
-                alert("Chúc bạn may mắn lần sau!");
-            }
+                // Display the result
+                if (winAmount > 0) {
+                    alert("Bạn đã thắng " + winAmount + " token!");
+                } else {
+                    alert("Chúc bạn may mắn lần sau!");
+                }
+            }, 3000); // Wait for the animation to finish
         }
 
         function depositTokens() {
