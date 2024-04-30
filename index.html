@@ -109,27 +109,35 @@
             setTimeout(displayResult, 3000);
         }
 
-        function placeBet() {
-            betAmount = parseInt(document.getElementById("betAmount").value);
-            var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
+function placeBet() {
+    var betAmountInput = document.getElementById("betAmount").value;
+    var selectedNumber = document.getElementById("selectedNumber").value;
 
-            if (isNaN(betAmount) || betAmount <= 0) {
-                showMessage("Please enter a valid bet amount!<br>");
-                return;
-            }
+    // Kiểm tra xem số token và số đã được chọn chưa
+    if (betAmountInput === "" || selectedNumber === "0") {
+        showMessage("Please enter a valid bet amount and select a lucky number!<br>");
+        return;
+    }
 
-            if (betAmount > balance) {
-                showMessage("Bet amount exceeds current balance!<br>");
-                return;
-            }
+    betAmount = parseInt(betAmountInput);
 
-            // Roll the dice with animation
-            rollDiceAnimation();
+    if (isNaN(betAmount) || betAmount <= 0) {
+        showMessage("Please enter a valid bet amount!<br>");
+        return;
+    }
 
-            // Reduce balance after placing the bet
-            balance -= betAmount;
-            updateBalance();
-        }
+    if (betAmount > balance) {
+        showMessage("Bet amount exceeds current balance!<br>");
+        return;
+    }
+
+    // Roll the dice with animation
+    rollDiceAnimation();
+
+    // Reduce balance after placing the bet
+    balance -= betAmount;
+    updateBalance();
+}
 
         function displayResult() {
             var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
