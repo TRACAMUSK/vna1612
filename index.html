@@ -71,7 +71,8 @@
             for (var i = 0; i < 3; i++) {
                 var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
                 diceValues.push(value);
-                document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
+                var diceElement = document.getElementById("dice" + (i + 1));
+                diceElement.innerHTML = "&#x268" + (value + 5); // Unicode for dice face
             }
         }
 
