@@ -75,6 +75,7 @@
     <button onclick="placeBet()">Place Bet</button>
     <button onclick="depositTokens()">Deposit $TLD</button>
     <button onclick="withdrawTokens()">Withdraw $TLD</button>
+    <button onclick="social()">Social</button>
     <div id="diceContainer">
         <div class="dice" id="dice1"></div>
         <div class="dice" id="dice2"></div>
@@ -211,6 +212,10 @@
 
         function showHowToPlay() {
             showMessage("How to Play:<br>1. Enter the amount you want to bet.<br>2. Select a lucky number from 1 to 6.<br>3. Click on 'Place Bet' to roll the dice and see if you win!<br>4. If your chosen number appears:<br>Once: You win 2 times your bet.<br>Twice: You win 5 times your bet.<br>Three times: You win 10 times your bet.<br>");
+        }
+        
+        function social() {
+            showMessage("1. The Telegram community chat group will be made public upon completion of verification with Telegram on May 7th.<br>2. Twitter will be made public upon completion of business verification with X (No specific time yet).<br>3. Please wait for official announcements through this app.");
         }
 
         function showRoadmap() {
