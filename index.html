@@ -9,17 +9,17 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        #dice {
+        .dice {
             width: 100px;
             height: 100px;
             background-color: #f0f0f0;
             border: 2px solid #333;
             border-radius: 10px;
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
             font-size: 36px;
-            margin: 20px auto;
+            margin: 20px;
         }
         button {
             padding: 10px 20px;
@@ -34,13 +34,22 @@
 </head>
 <body>
     <h1>Xúc xắc</h1>
-    <div id="dice">?</div>
+    <div class="dice" id="dice1">?</div>
+    <div class="dice" id="dice2">?</div>
+    <div class="dice" id="dice3">?</div>
+    <br>
     <button onclick="rollDice()">Xúc xắc</button>
 
     <script>
         function rollDice() {
-            var diceValue = Math.floor(Math.random() * 6) + 1; // Random từ 1 đến 6
-            document.getElementById("dice").innerText = diceValue;
+            var diceValues = [];
+            for (var i = 0; i < 3; i++) {
+                var value = Math.floor(Math.random() * 6) + 1; // Random từ 1 đến 6
+                diceValues.push(value);
+            }
+            document.getElementById("dice1").innerText = diceValues[0];
+            document.getElementById("dice2").innerText = diceValues[1];
+            document.getElementById("dice3").innerText = diceValues[2];
         }
     </script>
 </body>
