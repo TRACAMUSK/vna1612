@@ -133,6 +133,11 @@
 
             diceValues = []; // Reset dice values
 
+            // Reset transform of dice before rolling animation
+            document.querySelectorAll(".dice").forEach(die => {
+                die.style.transform = "none";
+            });
+
             // Roll the dice with animation
             rollDiceAnimation();
 
