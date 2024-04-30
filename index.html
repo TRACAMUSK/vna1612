@@ -74,17 +74,7 @@
                 document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
                 document.getElementById("dice" + (i + 1)).style.transform = "rotateX(360deg)";
             }
-            setTimeout(rollDice, 3000);
-        }
-
-        function rollDice() {
-            diceValues = [];
-            for (var i = 0; i < 3; i++) {
-                var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
-                diceValues.push(value);
-                document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
-                document.getElementById("dice" + (i + 1)).style.transform = "rotateX(0deg)";
-            }
+            setTimeout(displayResult, 3000);
         }
 
         function placeBet() {
@@ -104,39 +94,45 @@
             // Roll the dice with animation
             rollDiceAnimation();
 
-            // Wait for the animation to finish and then calculate the result
-            setTimeout(function() {
-                var winAmount = 0;
-                var countSelectedNumber = 0;
-                for (var i = 0; i < diceValues.length; i++) {
-                    if (diceValues[i] === selectedNumber) {
-                        countSelectedNumber++;
-                    }
+            // Reduce balance after placing the bet
+            balance -= betAmount;
+            updateBalance();
+        }
+
+        function displayResult() {
+            var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
+            var countSelectedNumber = 0;
+            for (var i = 0; i < diceValues.length; i++) {
+                if (diceValues[i] === selectedNumber) {
+                    countSelectedNumber++;
                 }
+            }
 
-                // Reduce balance after placing the bet
-                balance -= betAmount;
-                updateBalance();
+            // Calculate the win amount based on the count of selected number
+            var winAmount = 0;
+            if (countSelectedNumber === 1) {
+                winAmount = betAmount * 2;
+            } else if (countSelectedNumber === 2) {
+                winAmount = betAmount * 5;
+            } else if (countSelectedNumber === 3) {
+                winAmount = betAmount * 10;
+            }
 
-                if (countSelectedNumber === 1) {
-                    winAmount = betAmount * 2;
-                } else if (countSelectedNumber === 2) {
-                    winAmount = betAmount * 5;
-                } else if (countSelectedNumber === 3) {
-                    winAmount = betAmount * 10;
-                }
+            // Display the result
+            if (winAmount > 0) {
+                alert("You won " + winAmount + " tokens!");
+            } else {
+                alert("Better luck next time!");
+            }
 
-                // Update balance according to the result
-                balance += winAmount;
-                updateBalance();
+            // Update balance after calculating the result
+            balance += winAmount;
+            updateBalance();
 
-                // Display the result
-                if (winAmount > 0) {
-                    alert("You won " + winAmount + " tokens!");
-                } else {
-                    alert("Better luck next time!");
-                }
-            }, 3000); // Wait for the animation to finish
+            // Reset dice values
+            for (var i = 0; i < 3; i++) {
+                document.getElementById("dice" + (i + 1)).innerText = '';
+            }
         }
 
         function depositTokens() {
