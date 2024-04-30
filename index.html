@@ -52,23 +52,27 @@
     <button onclick="placeBet()">Đặt cược</button>
     <button onclick="depositTokens()">Nạp token</button>
     <button onclick="withdrawTokens()">Rút token</button>
+    <div id="diceContainer">
+        <div class="dice" id="dice1"></div>
+        <div class="dice" id="dice2"></div>
+        <div class="dice" id="dice3"></div>
+    </div>
 
     <script>
-        var balance = 100; // Số dư ban đầu
+        var balance = 100; // Initial balance
+        var diceValues = []; // Store dice values globally
 
         function updateBalance() {
             document.getElementById("balance").innerText = balance;
         }
 
         function rollDice() {
-            var diceValues = [];
+            diceValues = [];
             for (var i = 0; i < 3; i++) {
-                var value = Math.floor(Math.random() * 6) + 1; // Random từ 1 đến 6
+                var value = Math.floor(Math.random() * 6) + 1; // Random from 1 to 6
                 diceValues.push(value);
+                document.getElementById("dice" + (i + 1)).innerText = value; // Update dice values
             }
-            document.getElementById("dice1").innerText = diceValues[0];
-            document.getElementById("dice2").innerText = diceValues[1];
-            document.getElementById("dice3").innerText = diceValues[2];
         }
 
         function placeBet() {
@@ -85,23 +89,23 @@
                 return;
             }
 
-            // Giảm số dư sau khi đặt cược
+            // Reduce balance after placing the bet
             balance -= betAmount;
             updateBalance();
 
-            // Xúc xắc
+            // Roll the dice
             rollDice();
 
-            // Kiểm tra kết quả
+            // Check the result
             var winAmount = 0;
             if (diceValues.includes(selectedNumber)) {
-                winAmount = betAmount * 5; // Nếu số đã chọn xuất hiện trên xúc xắc, người chơi thắng 5 lần số tiền cược
+                winAmount = betAmount * 5; // If the selected number appears on any dice, the player wins 5 times the bet amount
             }
 
             balance += winAmount;
             updateBalance();
 
-            // Hiển thị kết quả
+            // Display the result
             if (winAmount > 0) {
                 alert("Bạn đã thắng " + winAmount + " token!");
             } else {
@@ -131,7 +135,7 @@
             }
         }
 
-        // Cập nhật số dư ban đầu
+        // Update initial balance
         updateBalance();
     </script>
 </body>
