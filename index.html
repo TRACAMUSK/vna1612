@@ -29,18 +29,29 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Xúc xắc</h1>
+    <div class="balance">Số dư: <span id="balance">Đang cập nhật...</span> $TDICE</div>
     <div class="dice" id="dice1">?</div>
     <div class="dice" id="dice2">?</div>
     <div class="dice" id="dice3">?</div>
     <br>
     <button onclick="rollDice()">Xúc xắc</button>
+    <button onclick="placeBet()">Đặt cược</button>
+    <button onclick="depositTokens()">Nạp token</button>
+    <button onclick="withdrawTokens()">Rút token</button>
 
     <script>
+        var balance = 100; // Số dư ban đầu
+
+        function updateBalance() {
+            document.getElementById("balance").innerText = balance;
+        }
+
         function rollDice() {
             var diceValues = [];
             for (var i = 0; i < 3; i++) {
@@ -51,6 +62,36 @@
             document.getElementById("dice2").innerText = diceValues[1];
             document.getElementById("dice3").innerText = diceValues[2];
         }
+
+        function placeBet() {
+            // Thêm mã để xử lý đặt cược ở đây
+            alert("Bạn đã đặt cược!");
+        }
+
+        function depositTokens() {
+            var amount = parseInt(prompt("Nhập số token bạn muốn nạp:"));
+            if (!isNaN(amount) && amount > 0) {
+                balance += amount;
+                updateBalance();
+                alert("Bạn đã nạp " + amount + " token vào tài khoản!");
+            } else {
+                alert("Vui lòng nhập số token hợp lệ!");
+            }
+        }
+
+        function withdrawTokens() {
+            var amount = parseInt(prompt("Nhập số token bạn muốn rút:"));
+            if (!isNaN(amount) && amount > 0 && amount <= balance) {
+                balance -= amount;
+                updateBalance();
+                alert("Bạn đã rút " + amount + " token từ tài khoản!");
+            } else {
+                alert("Vui lòng nhập số token hợp lệ!");
+            }
+        }
+
+        // Cập nhật số dư ban đầu
+        updateBalance();
     </script>
 </body>
 </html>
