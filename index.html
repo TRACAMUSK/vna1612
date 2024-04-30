@@ -98,8 +98,19 @@
 
             // Check the result
             var winAmount = 0;
-            if (diceValues.includes(selectedNumber)) {
-                winAmount = betAmount * 5; // If the selected number appears on any dice, the player wins 5 times the bet amount
+            var countSelectedNumber = 0;
+            for (var i = 0; i < diceValues.length; i++) {
+                if (diceValues[i] === selectedNumber) {
+                    countSelectedNumber++;
+                }
+            }
+
+            if (countSelectedNumber === 1) {
+                winAmount = betAmount * 2;
+            } else if (countSelectedNumber === 2) {
+                winAmount = betAmount * 5;
+            } else if (countSelectedNumber === 3) {
+                winAmount = betAmount * 10;
             }
 
             balance += winAmount;
