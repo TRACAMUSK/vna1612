@@ -114,12 +114,12 @@
             var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
 
             if (isNaN(betAmount) || betAmount <= 0) {
-                showMessage("Please enter a valid bet amount!");
+                showMessage("Please enter a valid bet amount!<br>");
                 return;
             }
 
             if (betAmount > balance) {
-                showMessage("Bet amount exceeds current balance!");
+                showMessage("Bet amount exceeds current balance!<br>");
                 return;
             }
 
@@ -152,9 +152,9 @@
 
             // Display the result
             if (winAmount > 0) {
-                showMessage("You won " + winAmount + " tokens!");
+                showMessage("You won " + winAmount + " tokens!<br>");
             } else {
-                showMessage("Better luck next time!");
+                showMessage("Better luck next time!<br>");
             }
 
             // Update balance after calculating the result
@@ -172,9 +172,9 @@
             if (!isNaN(amount) && amount > 0) {
                 balance += amount;
                 updateBalance();
-                showMessage("You have deposited " + amount + " tokens into your account!");
+                showMessage("You have deposited " + amount + " tokens into your account!<br>");
             } else {
-                showMessage("Please enter a valid number of tokens!");
+                showMessage("Please enter a valid number of tokens!<br>");
             }
         }
 
@@ -183,9 +183,9 @@
             if (!isNaN(amount) && amount > 0 && amount <= balance) {
                 balance -= amount;
                 updateBalance();
-                showMessage("You have withdrawn " + amount + " tokens from your account!");
+                showMessage("You have withdrawn " + amount + " tokens from your account!<br>");
             } else {
-                showMessage("Please enter a valid number of tokens!");
+                showMessage("Please enter a valid number of tokens!<br>");
             }
         }
 
@@ -194,11 +194,11 @@
         }
 
         function showRoadmap() {
-            showMessage("Token Game Roadmap (May 2024 - December 2024):<br><br>May 2024 - July 2024: Foundation and Basic Features<br>1. Game Infrastructure Setup<br>2. User Authentication and Authorization<br>3. Basic Gameplay Mechanics<br>4. UI/UX Design<br><br>August 2024 - October 2024: Enhancements and Expansion<br>1. Advanced Betting Options<br>2. Social Features<br>3. Token Economy Integration<br>4. Mobile Optimization<br><br>November 2024 - December 2024: Refinement and Expansion<br>1. Multiplayer Mode<br>2. Enhanced Visuals and Sound<br>3. Community Engagement<br>4. Cross-Platform Compatibility<br><br>Beyond 2024: Continued Growth and Innovation<br>1. Regular Content Updates<br>2. Tournaments and Events<br>3. Integration with Blockchain<br>4. Expansion into New Markets");
+            showMessage("Token Game Roadmap (May 2024 - December 2024):<br><br>May 2024 - July 2024: Foundation and Basic Features<br>1. Game Infrastructure Setup<br>2. User Authentication and Authorization<br>3. Basic Gameplay Mechanics<br>4. UI/UX Design<br><br>August 2024 - October 2024: Enhancements and Expansion<br>1. Advanced Betting Options<br>2. Social Features<br>3. Token Economy Integration<br>4. Mobile Optimization<br><br>November 2024 - December 2024: Refinement and Expansion<br>1. Multiplayer Mode<br>2. Enhanced Visuals and Sound<br>3. Community Engagement<br>4. Cross-Platform Compatibility<br><br>Beyond 2024: Continued Growth and Innovation<br>1. Regular Content Updates<br>2. Tournaments and Events<br>3. Integration with Blockchain<br>4. Expansion into New Markets<br>");
         }
 
         function buyTLD() {
-            showMessage("Please wait for the official announcement");
+            showMessage("Please wait for the official announcement<br>");
         }
 
         function showMessage(message) {
