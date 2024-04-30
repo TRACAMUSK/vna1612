@@ -35,12 +35,20 @@
 </head>
 <body>
     <h1>Xúc xắc</h1>
-    <div class="balance">Số dư: <span id="balance">Đang cập nhật...</span> $TDICE</div>
-    <div class="dice" id="dice1">?</div>
-    <div class="dice" id="dice2">?</div>
-    <div class="dice" id="dice3">?</div>
+    <div class="balance">Số dư: <span id="balance">100</span> token</div>
+    <div>
+        <label for="betAmount">Số tiền cược:</label>
+        <input type="number" id="betAmount" min="1" step="1">
+        <select id="selectedNumber">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
     <br>
-    <button onclick="rollDice()">Xúc xắc</button>
     <button onclick="placeBet()">Đặt cược</button>
     <button onclick="depositTokens()">Nạp token</button>
     <button onclick="withdrawTokens()">Rút token</button>
@@ -64,8 +72,41 @@
         }
 
         function placeBet() {
-            // Thêm mã để xử lý đặt cược ở đây
-            alert("Bạn đã đặt cược!");
+            var betAmount = parseInt(document.getElementById("betAmount").value);
+            var selectedNumber = parseInt(document.getElementById("selectedNumber").value);
+
+            if (isNaN(betAmount) || betAmount <= 0) {
+                alert("Vui lòng nhập số tiền cược hợp lệ!");
+                return;
+            }
+
+            if (betAmount > balance) {
+                alert("Số tiền cược vượt quá số dư hiện có!");
+                return;
+            }
+
+            // Giảm số dư sau khi đặt cược
+            balance -= betAmount;
+            updateBalance();
+
+            // Xúc xắc
+            rollDice();
+
+            // Kiểm tra kết quả
+            var winAmount = 0;
+            if (diceValues.includes(selectedNumber)) {
+                winAmount = betAmount * 5; // Nếu số đã chọn xuất hiện trên xúc xắc, người chơi thắng 5 lần số tiền cược
+            }
+
+            balance += winAmount;
+            updateBalance();
+
+            // Hiển thị kết quả
+            if (winAmount > 0) {
+                alert("Bạn đã thắng " + winAmount + " token!");
+            } else {
+                alert("Chúc bạn may mắn lần sau!");
+            }
         }
 
         function depositTokens() {
