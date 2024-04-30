@@ -50,8 +50,8 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    max-height: 450px; /* Kích thước cố định của hộp thông báo */
-    overflow: auto; /* Tạo thanh cuộn khi cần thiết */
+    max-height: 450px;
+    overflow: auto;
 }
     </style>
 </head>
@@ -75,7 +75,7 @@
     <button onclick="placeBet()">Place Bet</button>
     <button onclick="depositTokens()">Deposit $TLD</button>
     <button onclick="withdrawTokens()">Withdraw $TLD</button>
-    <button onclick="social()">Social</button>
+    <button onclick="buyToken()">Buy $TLD</button>
     <div id="diceContainer">
         <div class="dice" id="dice1"></div>
         <div class="dice" id="dice2"></div>
@@ -85,6 +85,7 @@
     <button onclick="eventNow()">Event Trade $TLD</button>
     <button onclick="showRoadmap()">Roadmap</button>
     <button onclick="showHowToPlay()">How to Play</button>
+    <button onclick="social()">Social</button>
 
     <!-- Message Box -->
     <div class="overlay" id="overlay">
@@ -224,6 +225,10 @@
 
         function eventNow() {
             showMessage("The [Buy $TLD] event features a dynamic prize pool that can reach up to $8,000. Its scale is determined by the total trading volume of all buyers during the competition period. The larger the trading volume, the larger the prize pool.<br>When the total trading volume reaches $10,000, the prize pool is $1,000. At $100,000, it increases to $2,000. For $500,000, the pool grows to $3,000. At $1 million, it reaches $5,000. If the total volume exceeds $5 million, the prize pool maxes out at $8,000.<br>The distribution of rewards is as follows:<br>TOP 1: 40% of the prize pool<br>TOP 2: 30% of the prize pool<br>TOP 3: 15% of the prize pool<br>TOP 4 to TOP 10: 2.14% of the prize pool each<br>Rankings will be announced and snapshot on May 7th, 2024, based on the total buy/sell volume of users in the $TLD holder list.<br>");
+        }
+
+        function buyToken() {
+            window.open("https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQAyzC_MkwyMdjj2LPviyJbmErddBDC6rbFKPkQW32w-Wqh5", "_blank");
         }
 
         function showMessage(message) {
